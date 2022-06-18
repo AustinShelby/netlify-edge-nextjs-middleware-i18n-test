@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const shouldHandleLocale =
     !PUBLIC_FILE.test(request.nextUrl.pathname) &&
     !request.nextUrl.pathname.includes("/api/") &&
-    request.nextUrl.locale === "default";
+    (request.nextUrl.locale === "default" || request.nextUrl.locale === "");
 
   console.log(
     `Running middleware.\nLocale: ${request.nextUrl.locale}.\nUrl: ${request.nextUrl.pathname}.\nShould handle: ${shouldHandleLocale}`
