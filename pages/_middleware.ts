@@ -24,7 +24,9 @@ export function middleware(request: NextRequest) {
       !PUBLIC_FILE.test(request.nextUrl.pathname) &&
       !request.nextUrl.pathname.includes("/api/") &&
       !request.nextUrl.pathname.startsWith("/en/") &&
-      !request.nextUrl.pathname.startsWith("/de/");
+      request.nextUrl.pathname !== "/en" &&
+      !request.nextUrl.pathname.startsWith("/de/") &&
+      request.nextUrl.pathname !== "/de";
     if (shouldHandleLocale) {
       const url = request.nextUrl.clone();
       url.pathname = `/de${request.nextUrl.pathname}`;
